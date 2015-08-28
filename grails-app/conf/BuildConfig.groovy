@@ -61,6 +61,9 @@ grails.project.dependency.resolution = {
         compile ":scaffolding:2.0.3"
         compile ':cache:1.1.7'
 
+        // include the Spring Batch plugin for Grails
+        compile ':spring-batch:2.0.0'
+
         // plugins needed at runtime but not for compilation
         runtime ":hibernate:3.6.10.16" // or ":hibernate4:4.3.5.4"
         runtime ":database-migration:1.4.0"
@@ -80,4 +83,5 @@ grails.project.dependency.resolution = {
         //compile ":coffee-asset-pipeline:1.5.0"
         //compile ":handlebars-asset-pipeline:1.3.0.1"
     }
+
 }
