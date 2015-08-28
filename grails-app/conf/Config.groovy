@@ -97,6 +97,13 @@ environments {
         grails.logging.jul.usebridge = false
         // TODO: grails.serverURL = "http://www.changeme.com"
     }
+    mysql {
+        plugin {
+            springBatch {
+                database = "mysql"
+            }
+        }
+    }
 }
 
 // log4j configuration
@@ -118,4 +125,16 @@ log4j = {
            'org.springframework',
            'org.hibernate',
            'net.sf.ehcache.hibernate'
+}
+plugin {
+    springBatch {
+        jmx {
+            enable = true
+            remote {
+                enable = false
+            }
+        }
+        loadTables = true
+        database = "h2"
+    }
 }
