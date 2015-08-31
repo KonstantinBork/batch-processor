@@ -51,6 +51,9 @@ grails.project.dependency.resolution = {
 
         // runtime 'mysql:mysql-connector-java:5.1.27'
         // runtime 'org.postgresql:postgresql:9.3-1100-jdbc41'
+
+        compile 'org.springframework.integration:spring-integration-core:3.0.7.RELEASE'
+
         test "org.grails:grails-datastore-test-support:1.0-grails-2.3"
     }
 

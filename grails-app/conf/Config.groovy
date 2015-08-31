@@ -125,6 +125,10 @@ log4j = {
            'org.springframework',
            'org.hibernate',
            'net.sf.ehcache.hibernate'
+
+    info    'grails.app',
+            'scheduling',
+            'grails.plugins.springbatch'
 }
 plugin {
     springBatch {
@@ -138,3 +142,11 @@ plugin {
         database = "h2"
     }
 }
+grails.plugin.databasemigration.ignoredObjects = ['BATCH_JOB_EXECUTION',
+                                                  'BATCH_JOB_EXECUTION_CONTEXT','BATCH_JOB_EXECUTION_SEQ',
+                                                  'BATCH_JOB_INSTANCE','BATCH_JOB_PARAMS','BATCH_JOB_SEQ',
+                                                  'BATCH_STEP_EXECUTION', 'BATCH_STEP_EXECUTION_CONTEXT',
+                                                  'BATCH_STEP_EXECUTION_SEQ',
+                                                  'IDX_BATCH_JOB_INSTANCE_JOB_NAME_JOB_KEY','JOB_INST_UN',
+                                                  'IDX_BATCH_STEP_EXECUTION_STEP_NAME_JOB_EXECUTION_ID',
+                                                  'IDX_BATCH_STEP_EXECUTION_VERSION']

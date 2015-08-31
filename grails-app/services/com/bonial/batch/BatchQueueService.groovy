@@ -1,43 +1,42 @@
 package com.bonial.batch
 
 import com.bonial.batch.interfaces.Queue
-import grails.transaction.Transactional
+import org.springframework.integration.Message
+import org.springframework.integration.channel.QueueChannel
 
 /**
  * batch-processor
  * @author  Konstantin Bork
- * @version 0.1
+ * @version 0.2
  * @created 08/28/2015
  *
  * The implementation of the Queue interface.
  */
 
-@Transactional
 class BatchQueueService implements Queue {
 
-    @Override
-    void enqueue() {
+    def queueChannel = new QueueChannel(100)
 
+    @Override
+    boolean enqueue(Message message) {
+        def sent = queueChannel.send(message)
+        return sent
     }
 
     @Override
-    void dequeue() {
-
+    Message dequeue() {
+        Message m = queueChannel.receive()
+        return m
     }
 
     @Override
     int size() {
-        return 0
-    }
-
-    @Override
-    void head() {
-
+        return queueChannel.queueSize
     }
 
     @Override
     boolean isEmpty() {
-        return false
+        return size() == 0
     }
 
 }

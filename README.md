@@ -1,2 +1,2 @@
 # batch-processor
-Version 0.1 Build 2
+Version 0.2 Build 3

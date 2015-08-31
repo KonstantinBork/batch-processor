@@ -8,7 +8,7 @@ import org.springframework.batch.repeat.RepeatStatus
 /**
  * batch-processor
  * @author Konstantin Bork
- * @version 0.1
+ * @version 0.9
  * @created 08/28/2015
  *
  * Example for the look of a tasklet.

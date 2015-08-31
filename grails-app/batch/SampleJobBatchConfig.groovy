@@ -3,14 +3,17 @@ import com.bonial.batch.jobs.SampleJobTasklet
 /**
  * batch-processor
  * @author Konstantin Bork
- * @version 0.1
+ * @version 0.9
  * @created 08/28/2015
  *
  * An example for the look of Spring Batch job configurations.
  */
 
-beans = {
+beans {
 
+    /*
+        Necessary line for BatchConfig files.
+     */
     xmlns batch:"http://www.springframework.org/schema/batch"
 
     /**
@@ -21,7 +24,7 @@ beans = {
             2) One tasklet executes a task.
         The tasklet is referenced in the step.
      */
-    batch.job(id: 'helloWorldJob') {
+    batch.job(id: 'sampleJob') {
         batch.step(id: 'printStep') {
             batch.tasklet(ref: 'printHelloWorld')
         }
@@ -31,7 +34,7 @@ beans = {
         Reference of the tasklet. It gets the Tasklet implementation as a parameter and sets a bean.
      */
     printHelloWorld(SampleJobTasklet) { bean ->
-        bean.autowire = "byName"
+        bean.autowire = 'byName'
     }
 
 }
