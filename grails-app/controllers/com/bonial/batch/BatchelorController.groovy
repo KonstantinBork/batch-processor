@@ -12,6 +12,7 @@ package com.bonial.batch
 class BatchelorController {
 
     def batchTestService
+    def batchProducerService
 
     def index() {
 
@@ -33,6 +34,25 @@ class BatchelorController {
         for(int i in 0..99) {
             batchTestService.launchSampleJob()
         }
+        redirect(uri: "/batchelor/index")
+    }
+
+    def produceTask() {
+        int i = batchProducerService.batchQueueService.size()
+        println(i)
+        batchProducerService.produceTask("sampleJob")
+        i = batchProducerService.batchQueueService.size()
+        println(i)
+        redirect(uri: "/batchelor/index")
+    }
+
+    def produce10Tasks() {
+        int i = batchProducerService.batchQueueService.size()
+        println(i)
+        for(int j in 1..10)
+            batchProducerService.produceTask("sampleJob")
+        i = batchProducerService.batchQueueService.size()
+        println(i)
         redirect(uri: "/batchelor/index")
     }
 

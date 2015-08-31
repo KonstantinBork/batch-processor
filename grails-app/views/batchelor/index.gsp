@@ -15,6 +15,8 @@
         <g:link action="launchSampleJobOnce">Launch 1 job</g:link>
         <g:link action="launchSampleJobTenTimes">Launch 10 jobs</g:link>
         <g:link action="launchSampleJob100">Launch 100 jobs</g:link>
+        <g:link action="produceTask">Produce 1 task</g:link>
+        <g:link action="produce10Tasks">Produce 10 tasks</g:link>
     </p>
 </body>
 </html>
