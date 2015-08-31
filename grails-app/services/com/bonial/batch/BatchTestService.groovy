@@ -11,12 +11,12 @@ package com.bonial.batch
 
 class BatchTestService {
 
+    static transactional = false
+
     def springBatchService
 
     def launchSampleJob() {
-        println("Start new job")
         springBatchService.launch("sampleJob")
-        println("Job started")
     }
 
 }
