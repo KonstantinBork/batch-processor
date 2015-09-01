@@ -72,4 +72,12 @@ class BatchelorController {
         redirect(uri: "/batchelor/index")
     }
 
+    def testLongJob() {
+        batchProducerService.produceTask("longJob")
+        Thread.start {
+            batchConsumerService.consumeNextTask()
+        }
+        redirect(uri: "/batchelor/index")
+    }
+
 }
