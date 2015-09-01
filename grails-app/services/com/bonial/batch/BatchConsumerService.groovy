@@ -9,7 +9,7 @@ import java.util.concurrent.ConcurrentLinkedQueue
 /**
  * batch-processor
  * @author  Konstantin Bork
- * @version 0.2
+ * @version 0.4
  * @created 08/28/2015
  *
  * The implementation of the Consumer interface.
@@ -45,6 +45,7 @@ class BatchConsumerService implements Consumer {
         w.start(m)
         busyWorkers.remove(w)
         availableWorkers.add(w)
+        Thread.sleep(new Random().nextInt(100))
     }
 
 }
