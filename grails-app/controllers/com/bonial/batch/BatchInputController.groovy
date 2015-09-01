@@ -1,11 +1,12 @@
 package com.bonial.batch
 
 import com.bonial.batch.interfaces.InputController
+import org.springframework.batch.core.JobExecution
 
 /**
  * batch-processor
  * @author  Konstantin Bork
- * @version 0.2
+ * @version 0.4
  * @created 08/28/2015
  *
  * Controller for incoming batch tasks.
@@ -14,25 +15,40 @@ import com.bonial.batch.interfaces.InputController
 class BatchInputController implements InputController {
 
     def batchProducerService
+    def springBatchService
 
-    @Override
-    void registerTask() {
-        batchProducerService.produceTask()
-    }
-
-    @Override
-    void getStatus(String batchTaskID) {
+    def index() {
 
     }
 
     @Override
-    void pauseTask(String batchTaskID) {
-
+    def registerTask() {
+        def batchTaskName = params.taskName
+        batchProducerService.produceTask(batchTaskName)
+        println("task in system")
+        redirect(url: "/batchInput/index")
     }
 
     @Override
-    void stopTask(String batchTaskID) {
+    def getStatus() {
+        JobExecution execution = getExecution(params.taskId)
+        return execution.status
+    }
 
+    @Override
+    def pauseTask() {
+        JobExecution execution = getExecution(params.taskId)
+    }
+
+    @Override
+    def stopTask() {
+        JobExecution execution = getExecution(params.taskId)
+        execution.stop()
+    }
+
+    JobExecution getExecution(String id) {
+        def taskExecutionId = Long.parseLong(id)
+        return springBatchService.jobExecution(taskExecutionId)
     }
 
 }
