@@ -12,7 +12,7 @@ import org.springframework.integration.message.GenericMessage
 /**
  * batch-processor
  * @author  Konstantin Bork
- * @version 0.3
+ * @version 0.4
  * @created 08/28/2015
  *
  * The implementation of the Producer interface.
@@ -62,10 +62,14 @@ class BatchProducerService implements Producer {
      * @return converted data
      */
     JobParameters buildJobParameters(Map<String, String> params) {
-        if(!params) return null
         JobParametersBuilder parametersBuilder = new JobParametersBuilder()
-        for(def parameter in params)
-            parametersBuilder.addString(parameter.key, parameter.value)
+        if(!params) {
+            parametersBuilder.addDate("Date", new Date())
+        }
+        else {
+            for (def parameter in params)
+                parametersBuilder.addString(parameter.key, parameter.value)
+        }
         return parametersBuilder.toJobParameters()
     }
 

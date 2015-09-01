@@ -9,16 +9,19 @@ import org.springframework.batch.repeat.RepeatStatus
  * batch-processor
  * @author Konstantin Bork
  * @version 1.0
- * @created 08/28/2015
+ * @created 09/01/2015
  *
  * Example for the look of a tasklet.
  */
 
-class SampleJobTasklet implements Tasklet {
+class LongJobTasklet implements Tasklet{
 
     @Override
     RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) throws Exception {
-        println("Hello World!")
+        println("This is a long lasting job")
+        def seconds = 100
+        Thread.sleep(seconds * 1000)
+        println("Job finished")
         return RepeatStatus.FINISHED
     }
 

@@ -3,7 +3,7 @@ package com.bonial.batch
 /**
  * batch-processor
  * @author  Konstantin Bork
- * @version 0.2
+ * @version 0.4
  * @created 08/28/2015
  *
  * A controller which let the BatchTestService test the sample job.
@@ -13,6 +13,7 @@ class BatchelorController {
 
     def batchTestService
     def batchProducerService
+    def batchConsumerService
 
     def index() {
 
@@ -53,6 +54,29 @@ class BatchelorController {
             batchProducerService.produceTask("sampleJob")
         i = batchProducerService.batchQueueService.size()
         println(i)
+        redirect(uri: "/batchelor/index")
+    }
+
+    def testConsumer() {
+        for(int i in 1..100) {
+            batchProducerService.produceTask("sampleJob")
+            Thread.sleep(100)
+        }
+        while(!batchProducerService.batchQueueService.empty)
+            batchConsumerService.consumeNextTask()
+        redirect(uri: "/batchelor/index")
+    }
+
+    def testWorker() {
+        batchTestService.testWorker()
+        redirect(uri: "/batchelor/index")
+    }
+
+    def testLongJob() {
+        batchProducerService.produceTask("longJob")
+        Thread.start {
+            batchConsumerService.consumeNextTask()
+        }
         redirect(uri: "/batchelor/index")
     }
 
