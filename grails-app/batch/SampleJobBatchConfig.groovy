@@ -3,7 +3,7 @@ import com.bonial.batch.jobs.SampleJobTasklet
 /**
  * batch-processor
  * @author Konstantin Bork
- * @version 0.9
+ * @version 1.0
  * @created 08/28/2015
  *
  * An example for the look of Spring Batch job configurations.
