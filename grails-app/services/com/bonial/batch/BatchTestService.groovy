@@ -34,4 +34,14 @@ class BatchTestService {
         worker.start(m)
     }
 
+    def saveNames(List<? extends Name> names) {
+        File f = new File(System.getProperty("user.home") + "/res.txt")
+        PrintWriter writer = new PrintWriter(f)
+        names.each {
+            writer.println(it.completeName)
+            println(it.completeName)
+        }
+        writer.close()
+    }
+
 }

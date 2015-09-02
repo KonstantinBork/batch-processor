@@ -12,7 +12,7 @@ import org.springframework.integration.message.GenericMessage
 /**
  * batch-processor
  * @author  Konstantin Bork
- * @version 0.4
+ * @version 0.5
  * @created 08/28/2015
  *
  * The implementation of the Producer interface.
@@ -24,7 +24,7 @@ class BatchProducerService implements Producer {
     def springBatchService
 
     @Override
-    String produceTask(String jobName, Map<String, String> params = null) {
+    String produceTask(String jobName, Map params = null) {
         Job job = findJob(jobName)
         JobLaunchRequest launchRequest = buildLaunchRequest(job, params)
         Message m = new GenericMessage(launchRequest)
@@ -50,7 +50,7 @@ class BatchProducerService implements Producer {
      * @param params parameters for the execution
      * @return
      */
-    JobLaunchRequest buildLaunchRequest(Job job, Map<String, String> params) {
+    JobLaunchRequest buildLaunchRequest(Job job, Map params) {
         JobParameters jobParameters = buildJobParameters(params)
         return new JobLaunchRequest(job, jobParameters)
     }
@@ -61,7 +61,7 @@ class BatchProducerService implements Producer {
      * @param params parameters for job execution
      * @return converted data
      */
-    JobParameters buildJobParameters(Map<String, String> params) {
+    JobParameters buildJobParameters(Map params) {
         JobParametersBuilder parametersBuilder = new JobParametersBuilder()
         if(!params) {
             parametersBuilder.addDate("Date", new Date())
