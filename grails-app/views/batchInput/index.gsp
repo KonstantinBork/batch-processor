@@ -24,9 +24,13 @@
     <h3>Currently running</h3>
     <g:each var="taskName" in="${executions}">
         <g:if test="${taskName.value}">
-            <strong>${taskName.key}</strong></br>
+            <!-- <strong>${taskName.key}</strong></br> -->
             <g:each var="id" in="${taskName.value}">
-                Execution no. ${id} <g:link action="stopTask" params="[execId: id]">Stop execution</g:link> </br>
+                <div id="job${id}">
+                    ${taskName.key} no. ${id}&nbsp;-&nbsp;
+                    <g:link action="getStatus" params="[execId: id]">Show status</g:link> &nbsp;
+                    <g:link action="stopTask" params="[execId: id]">Stop execution</g:link>
+                </div>
             </g:each>
             </div>
         </g:if>

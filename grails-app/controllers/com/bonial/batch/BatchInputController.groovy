@@ -43,8 +43,8 @@ class BatchInputController implements InputController {
 
     @Override
     def getStatus() {
-        JobExecution execution = getExecution(params.taskId)
-        return execution.status
+        long id = Long.parseLong(params.execId)
+        redirect(controller: "springBatchJobExecution", action: "show", id: id)
     }
 
     @Override
