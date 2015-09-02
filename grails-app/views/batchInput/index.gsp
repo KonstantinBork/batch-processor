@@ -11,6 +11,10 @@
 </head>
 <body>
 
+<div id="headPicture">
+    <g:img dir="images" file="grails_logo.png"/>
+</div>
+
 <div id="register">
     <h3>Register a new task</h3>
     <span id="selectTaskText">Select a task</span>

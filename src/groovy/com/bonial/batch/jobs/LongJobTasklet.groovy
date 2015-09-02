@@ -14,7 +14,7 @@ import org.springframework.batch.repeat.RepeatStatus
  * Example for the look of a tasklet.
  */
 
-class LongJobTasklet implements Tasklet{
+class LongJobTasklet implements Tasklet {
 
     @Override
     RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) throws Exception {
