@@ -2,6 +2,8 @@ package com.bonial.batch
 
 import com.bonial.batch.interfaces.InputController
 import org.springframework.batch.core.JobExecution
+import org.springframework.batch.core.configuration.JobRegistry
+import org.springframework.batch.core.launch.JobOperator
 
 /**
  * batch-processor
@@ -16,17 +18,27 @@ class BatchInputController implements InputController {
 
     def batchProducerService
     def springBatchService
+    def batchConsumerService
+
+    boolean consumingRunning = false
 
     def index() {
-
+        if(!consumingRunning) {
+            Thread.start {
+                while(true)
+                    batchConsumerService.consumeNextTask()
+            }
+            consumingRunning = true
+        }
+        Map lists = prepareLists()
+        render(view: "index", model: lists)
     }
 
     @Override
     def registerTask() {
         def batchTaskName = params.taskName
         batchProducerService.produceTask(batchTaskName)
-        println("task in system")
-        redirect(url: "/batchInput/index")
+        redirect(action: index())
     }
 
     @Override
@@ -49,6 +61,18 @@ class BatchInputController implements InputController {
     JobExecution getExecution(String id) {
         def taskExecutionId = Long.parseLong(id)
         return springBatchService.jobExecution(taskExecutionId)
+    }
+
+    Map prepareLists() {
+        JobRegistry registry = springBatchService.jobRegistry
+        Collection<String> jobs = registry.jobNames
+        JobOperator operator = springBatchService.jobOperator
+        Map runningExecutions = [:]
+        for(String job in jobs) {
+            Set<Long> execs = operator.getRunningExecutions(job)
+            runningExecutions.put(job, execs)
+        }
+        return [jobNames: jobs, executions: runningExecutions]
     }
 
 }
