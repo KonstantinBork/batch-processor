@@ -12,24 +12,22 @@
 <body>
 
 <div id="register">
-    <h2>Register a new task</h2>
-    <!-- TODO make the selection dynamic -->
-    <g:form action="registerTask">
+    <h3>Register a new task</h3>
+    <span id="selectTaskText">Select a task</span>
+    <g:form action="registerTask" id="registerForm">
         <g:select name="taskName" from="${jobNames}"/>
         <input value="Submit" type="submit"/>
     </g:form>
 </div>
 
 <div id="running">
-    <h2>Currently running</h2>
-    <!-- TODO add a link for each running job to get the status or stop it -->
+    <h3>Currently running</h3>
     <g:each var="taskName" in="${executions}">
         <g:if test="${taskName.value}">
-            <div name="${taskName}">
-                <strong>${taskName.key}</strong></br>
-                <g:each var="id" in="${taskName.value}">
-                    ${id} </br>
-                </g:each>
+            <strong>${taskName.key}</strong></br>
+            <g:each var="id" in="${taskName.value}">
+                Execution no. ${id} <g:link action="stopTask" params="[execId: id]">Stop execution</g:link> </br>
+            </g:each>
             </div>
         </g:if>
     </g:each>

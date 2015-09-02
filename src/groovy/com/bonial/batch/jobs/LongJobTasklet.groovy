@@ -18,11 +18,16 @@ class LongJobTasklet implements Tasklet{
 
     @Override
     RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) throws Exception {
-        println("This is a long lasting job")
-        def seconds = 100
-        Thread.sleep(seconds * 1000)
-        println("Job finished")
-        return RepeatStatus.FINISHED
+        try {
+            println("This is a long lasting job")
+            def seconds = 100
+            Thread.sleep(seconds * 1000)
+            println("Job finished")
+            return RepeatStatus.FINISHED
+        } catch(e) {
+            log.warn("Error occured", e)
+            return RepeatStatus.FINISHED
+        }
     }
 
 }

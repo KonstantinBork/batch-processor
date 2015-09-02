@@ -8,7 +8,7 @@ import org.springframework.batch.core.launch.JobOperator
 /**
  * batch-processor
  * @author  Konstantin Bork
- * @version 0.4
+ * @version 0.5
  * @created 08/28/2015
  *
  * Controller for incoming batch tasks.
@@ -54,16 +54,18 @@ class BatchInputController implements InputController {
 
     @Override
     def stopTask() {
-        JobExecution execution = getExecution(params.taskId)
-        execution.stop()
+        JobOperator operator = springBatchService.jobOperator
+        long id = Long.parseLong(params.execId)
+        operator.stop(id)
+        redirect(action: index())
     }
 
-    JobExecution getExecution(String id) {
+    private JobExecution getExecution(String id) {
         def taskExecutionId = Long.parseLong(id)
         return springBatchService.jobExecution(taskExecutionId)
     }
 
-    Map prepareLists() {
+    private Map prepareLists() {
         JobRegistry registry = springBatchService.jobRegistry
         Collection<String> jobs = registry.jobNames
         JobOperator operator = springBatchService.jobOperator
