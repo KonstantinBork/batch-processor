@@ -18,8 +18,13 @@ class SampleJobTasklet implements Tasklet {
 
     @Override
     RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) throws Exception {
-        println("Hello World!")
-        return RepeatStatus.FINISHED
+        try {
+            println("Hello World!")
+            return RepeatStatus.FINISHED
+        } catch(e) {
+            log.warn("Error occured", e)
+            return RepeatStatus.FINISHED
+        }
     }
 
 }
