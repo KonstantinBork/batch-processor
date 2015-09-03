@@ -6,6 +6,7 @@
 --%>
 
 <%@ page contentType="text/html;charset=UTF-8" %>
+<html>
 <head>
     <title>Batch Input</title>
 </head>
@@ -37,7 +38,6 @@
                     <g:link action="stopTask" params="[execId: id]">Stop execution</g:link>
                 </div>
             </g:each>
-            </div>
         </g:if>
     </g:each>
 </div>
