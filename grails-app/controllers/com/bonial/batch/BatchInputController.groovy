@@ -37,7 +37,10 @@ class BatchInputController implements InputController {
     @Override
     def registerTask() {
         def batchTaskName = params.taskName
-        batchProducerService.produceTask(batchTaskName)
+        def batchFile = params.file
+        File temp = File.createTempFile("temp", ".txt")
+        batchFile.transferTo(temp)
+        batchProducerService.produceTask(batchTaskName, [file: "file:${temp.path}"])
         redirect(action: index())
     }
 

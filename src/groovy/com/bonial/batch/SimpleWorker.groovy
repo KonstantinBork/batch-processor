@@ -12,7 +12,7 @@ import org.springframework.integration.Message
 /**
  * batch-processor
  * @author Konstantin Bork
- * @version 0.4
+ * @version 0.5
  * @created 08/31/2015
  *
  * Implementation of the Worker interface.

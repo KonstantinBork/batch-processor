@@ -7,7 +7,7 @@ import org.springframework.integration.channel.QueueChannel
 /**
  * batch-processor
  * @author  Konstantin Bork
- * @version 0.4
+ * @version 0.5
  * @created 08/28/2015
  *
  * The implementation of the Queue interface.

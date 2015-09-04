@@ -3,7 +3,7 @@ package com.bonial.batch.interfaces
 /**
  * batch-processor
  * @author Konstantin Bork
- * @version 0.2
+ * @version 0.5
  * @created 08/28/2015
  *
  * Interface for the task producer.
@@ -20,6 +20,6 @@ interface Producer {
      * @param params list of parameters needed for execution
      * @return unique ID of the task put into the queue
      */
-    String produceTask(String jobName, Map<String, String> params)
+    String produceTask(String jobName, Map params)
 
 }

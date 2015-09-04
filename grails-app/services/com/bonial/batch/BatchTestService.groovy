@@ -9,7 +9,7 @@ import org.springframework.integration.message.GenericMessage
 /**
  * batch-processor
  * @author  Konstantin Bork
- * @version 0.2
+ * @version 0.5
  * @created 08/28/2015
  *
  * A service which tests the sample job.
@@ -32,6 +32,16 @@ class BatchTestService {
         JobLaunchRequest request = new JobLaunchRequest(job, null)
         Message m = new GenericMessage(request)
         worker.start(m)
+    }
+
+    def saveNames(List<? extends Name> names) {
+        File f = new File(System.getProperty("user.home") + "/res.txt")
+        PrintWriter writer = new PrintWriter(f)
+        names.each {
+            writer.println(it.completeName)
+            println(it.completeName)
+        }
+        writer.close()
     }
 
 }
