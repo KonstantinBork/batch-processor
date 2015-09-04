@@ -9,17 +9,18 @@ import org.springframework.batch.repeat.RepeatStatus
  * batch-processor
  * @author Konstantin Bork
  * @version 1.0
- * @created 08/28/2015
- *
- * Example for the look of a tasklet.
+ * @created 09/02/2015
  */
 
-class SampleJobTasklet implements Tasklet {
+class PrintMessageTasklet implements Tasklet {
+
+    String msg
 
     @Override
     RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) throws Exception {
         try {
-            println("Hello World!")
+            println(msg)
+            Thread.sleep(10000)
             return RepeatStatus.FINISHED
         } catch(e) {
             log.warn("Error occured", e)
