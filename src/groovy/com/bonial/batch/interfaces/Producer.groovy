@@ -3,7 +3,7 @@ package com.bonial.batch.interfaces
 /**
  * batch-processor
  * @author Konstantin Bork
- * @version 0.2
+ * @version 0.5
  * @created 08/28/2015
  *
  * Interface for the task producer.

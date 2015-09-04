@@ -3,7 +3,7 @@ package com.bonial.batch
 /**
  * batch-processor
  * @author  Konstantin Bork
- * @version 0.4
+ * @version 0.5
  * @created 08/28/2015
  *
  * A controller which let the BatchTestService test the sample job.

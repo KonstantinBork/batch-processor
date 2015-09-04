@@ -9,7 +9,7 @@ import org.springframework.integration.message.GenericMessage
 /**
  * batch-processor
  * @author  Konstantin Bork
- * @version 0.2
+ * @version 0.5
  * @created 08/28/2015
  *
  * A service which tests the sample job.

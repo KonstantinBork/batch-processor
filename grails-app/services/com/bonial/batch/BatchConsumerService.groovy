@@ -9,7 +9,7 @@ import java.util.concurrent.ConcurrentLinkedQueue
 /**
  * batch-processor
  * @author  Konstantin Bork
- * @version 0.4
+ * @version 0.5
  * @created 08/28/2015
  *
  * The implementation of the Consumer interface.
@@ -19,7 +19,7 @@ class BatchConsumerService implements Consumer {
 
     def batchQueueService
 
-    static final int MAX_WORKERS = 15                                               // number of workers
+    static final int MAX_WORKERS = 1                                                // number of workers
     ConcurrentLinkedQueue<Worker> availableWorkers = new ConcurrentLinkedQueue<>()  // list with all available workers
     ConcurrentLinkedQueue<Worker> busyWorkers = new ConcurrentLinkedQueue<>()       // list with all busy workers
 

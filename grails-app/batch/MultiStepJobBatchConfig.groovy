@@ -1,5 +1,14 @@
 import com.bonial.batch.jobs.PrintMessageTasklet
 
+/**
+ * batch-processor
+ * @author Konstantin Bork
+ * @version 1.0
+ * @created 09/02/2015
+ *
+ * Another example for the look of Spring Batch job configurations.
+ */
+
 beans {
 
     xmlns batch:"http://www.springframework.org/schema/batch"
