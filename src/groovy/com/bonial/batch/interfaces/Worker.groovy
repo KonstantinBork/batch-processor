@@ -5,7 +5,7 @@ import org.springframework.integration.Message
 /**
  * batch-processor
  * @author Konstantin Bork
- * @version 0.1
+ * @version 0.5
  * @created 08/31/2015
  *
  * An interface for the workers which run the tasks.
